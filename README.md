@@ -9,4 +9,4 @@
 - Husky
 ## In `web3` branch you can find same template plus:
 - Typechain
-- Wallet connection function
+- Connect/disconnect MetaMask functions
