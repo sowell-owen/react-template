@@ -7,7 +7,8 @@ export const ROUTES_CONFIG: RouteObject[] = [
   {
     path: "/",
     element: <Home />,
-    /*
+  },
+  /*
     {
     path: "/example",
     element: <Examples />,
@@ -17,5 +18,4 @@ export const ROUTES_CONFIG: RouteObject[] = [
     ],
   },
     */
-  },
 ];
