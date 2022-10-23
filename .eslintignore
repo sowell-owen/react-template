@@ -1,6 +1,2 @@
 node-modules
 build
-.env
-typechain
-src/abi
-README.md

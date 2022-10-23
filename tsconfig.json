@@ -21,6 +21,5 @@
     "alwaysStrict": true,
     "noUnusedParameters": true
   },
-  "include": ["src"],
-  "exclude": ["src/typechain"]
+  "include": ["src"]
 }
