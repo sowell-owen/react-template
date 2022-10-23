@@ -3,8 +3,8 @@ import { ethers } from "ethers";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import MetamaskProvider from "./components/MetamaskProvider/MetamaskProvider";
-import RenderRoutes from "./routes";
+import MetamaskProvider from "./components/MetamaskProvider";
+import RenderRoutes from "./routes/RenderRoutes";
 
 function App() {
   const getLibrary = (
