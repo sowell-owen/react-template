@@ -8,14 +8,18 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@typechain/ethers-v5": "^10.1.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.62",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "ethers": "^5.7.1",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
@@ -24,12 +28,13 @@
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.4",
     "sass": "^1.54.8",
+    "typechain": "^8.1.0",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "yarn run codegen && react-scripts start",
+    "build": "yarn run codegen && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
@@ -37,7 +42,8 @@
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "codestyle": "yarn lint && yarn format",
-    "codestyle:fix": "yarn lint:fix && yarn format:fix"
+    "codestyle:fix": "yarn lint:fix && yarn format:fix",
+    "codegen": "typechain --target=ethers-v5 --out-dir src/typechain './src/abi/*.json'"
   },
   "eslintConfig": {
     "extends": [
