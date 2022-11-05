@@ -1,10 +1,10 @@
 import { useWeb3React } from "@web3-react/core";
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
 import { connectWallet } from "../../utils/connectWallet";
 import { disconnectWallet } from "../../utils/disconnectWallet";
 
-function Home() {
+const Home: FC = () => {
   const { activate, deactivate, account } = useWeb3React();
 
   useEffect(() => {
@@ -20,6 +20,6 @@ function Home() {
       </button>
     </div>
   );
-}
+};
 
 export default Home;

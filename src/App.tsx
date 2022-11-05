@@ -1,12 +1,12 @@
 import { Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
-import React from "react";
+import React, { FC } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import MetamaskProvider from "./components/MetamaskProvider";
 import RenderRoutes from "./routes/RenderRoutes";
 
-function App() {
+const App: FC = () => {
   const getLibrary = (
     provider:
       | ethers.providers.ExternalProvider
@@ -24,6 +24,6 @@ function App() {
       </MetamaskProvider>
     </Web3ReactProvider>
   );
-}
+};
 
 export default App;

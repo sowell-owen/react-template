@@ -1,16 +1,21 @@
 import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { injected } from "../../helpers/connectors";
 import { CHAIN_ID } from "../../helpers/constants";
 
-function MetamaskProvider({ children }: { children: JSX.Element }) {
+type MetamaskProviderProps = {
+  children: JSX.Element;
+};
+
+const MetamaskProvider: FC<MetamaskProviderProps> = ({ children }) => {
   const {
     active: networkActive,
     error: networkError,
     activate: activateNetwork,
     error,
   } = useWeb3React();
+
   const [isLoaded, setIsLoaded] = useState(false);
   const isWrongNetwork = error && error instanceof UnsupportedChainIdError;
 
@@ -45,6 +50,6 @@ function MetamaskProvider({ children }: { children: JSX.Element }) {
   }, [activateNetwork, networkActive, networkError]);
 
   return isLoaded ? children : <></>;
-}
+};
 
 export default MetamaskProvider;

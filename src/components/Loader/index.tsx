@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import "./style.scss";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -7,7 +7,7 @@ type LoaderProps = {
   isLoading: boolean;
 };
 
-function Loader({ children, isLoading }: LoaderProps) {
+const Loader: FC<LoaderProps> = ({ children, isLoading }) => {
   return (
     <>
       <div className={isLoading ? "loader-wrapper" : ""}>
@@ -16,6 +16,6 @@ function Loader({ children, isLoading }: LoaderProps) {
       {children}
     </>
   );
-}
+};
 
 export default Loader;
