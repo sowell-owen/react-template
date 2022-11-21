@@ -1,11 +1,9 @@
-import { useWeb3React } from "@web3-react/core";
 import React, { FC, useEffect } from "react";
 
-import { connectWallet } from "../../utils/connectWallet";
-import { disconnectWallet } from "../../utils/disconnectWallet";
+import useWallet from "../../hooks/useWallet";
 
 const Home: FC = () => {
-  const { activate, deactivate, account } = useWeb3React();
+  const { connectWallet, disconnectWallet, account } = useWallet();
 
   useEffect(() => {
     console.log("User's account: ", account);
@@ -14,10 +12,8 @@ const Home: FC = () => {
   return (
     <div>
       <h1>{account}</h1>
-      <button onClick={() => connectWallet(activate)}>connect wallet</button>
-      <button onClick={() => disconnectWallet(deactivate)}>
-        disconnect wallet
-      </button>
+      <button onClick={() => connectWallet()}>connect wallet</button>
+      <button onClick={() => disconnectWallet()}>disconnect wallet</button>
     </div>
   );
 };
