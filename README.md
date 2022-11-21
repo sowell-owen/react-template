@@ -1,12 +1,12 @@
 # React template 📑
 ## What is added to this template:
-- Folder structure
 - Loader component
 - Routing
 - Eslint
 - Prettier
 - Commitlint
 - Husky
-## In `web3` branch you can find same template plus:
+## Web3 features:
 - Typechain
-- Connect/disconnect MetaMask functions
+- useWallet hook
+- Auto wallet connection on page load
