@@ -2,7 +2,8 @@ import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
 import React, { FC, useEffect, useState } from "react";
 
 import { injected } from "../../helpers/connectors";
-import { CHAIN_ID } from "../../helpers/constants";
+import { CHAIN_ID_MAIN } from "../../helpers/constants";
+import useWallet from "../../hooks/useWallet";
 
 type MetamaskProviderProps = {
   children: JSX.Element;
@@ -10,11 +11,12 @@ type MetamaskProviderProps = {
 
 const MetamaskProvider: FC<MetamaskProviderProps> = ({ children }) => {
   const {
-    active: networkActive,
+    active: isNetworkActive,
     error: networkError,
-    activate: activateNetwork,
     error,
   } = useWeb3React();
+
+  const { connectWallet } = useWallet();
 
   const [isLoaded, setIsLoaded] = useState(false);
   const isWrongNetwork = error && error instanceof UnsupportedChainIdError;
@@ -23,31 +25,31 @@ const MetamaskProvider: FC<MetamaskProviderProps> = ({ children }) => {
     if (isWrongNetwork) {
       window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: `0x${CHAIN_ID}` }],
+        params: [{ chainId: `0x${CHAIN_ID_MAIN}` }],
       });
     }
 
-    const reactivateAccount = async () => {
+    const connectWalletOnPageLoad = async () => {
       try {
-        const isAuthorized = await injected().isAuthorized();
+        const isAuthorized = await injected.isAuthorized();
         setIsLoaded(true);
         const isDisconnected = localStorage.getItem("disconnect");
         if (
           isAuthorized &&
-          !networkActive &&
+          !isNetworkActive &&
           !networkError &&
           isDisconnected !== "true"
         ) {
-          await activateNetwork(injected());
-          localStorage.setItem("disconnect", "false");
+          connectWallet();
         }
       } catch (e) {
         console.log(e);
+      } finally {
         setIsLoaded(true);
       }
     };
-    reactivateAccount();
-  }, [activateNetwork, networkActive, networkError]);
+    connectWalletOnPageLoad();
+  }, [isNetworkActive, networkError]);
 
   return isLoaded ? children : <></>;
 };
